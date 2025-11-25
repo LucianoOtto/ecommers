@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
-import  Input  from "./Input"
+import Input from "./Input"
 import { Link, useNavigate } from 'react-router-dom'
 import Form from "./Form"
 import Button from "./Button"
+import { useStore } from "../Store/useStore"
 
 const LoginLegend = () => {
     return (
@@ -18,6 +19,7 @@ const LoginLegend = () => {
 
 const Login = () => {
     const navigate = useNavigate()
+    const setUser = useStore((state) => state.setUser) // Hook de Zustand
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -45,14 +47,15 @@ const Login = () => {
                 return
             }
             
-            localStorage.setItem('user', JSON.stringify({
+            // Usa setUser de Zustand en lugar de localStorage
+            setUser({
                 email,
                 token: res.token,
                 full_name: res.user?.fullName || email  
-            }))
+            })
             
             toast.success("Sesión iniciada")
-            navigate('/private/productos')
+            navigate('/private/product')
 
         } catch (error) {
             toast.error("Error al iniciar sesión")
@@ -86,7 +89,6 @@ const Login = () => {
                 type='submit'
                 value={loading ? "Iniciando..." : "Iniciar Sesión"}
                 disabled={loading}
-                onClick={()=>navigate('/Private/product')}
             />
         </Form>
     )

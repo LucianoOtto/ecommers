@@ -20,7 +20,7 @@ function App() {
         {/* Rutas privadas */}
         <Route path="/private" element={<Private />}>
           <Route path="agregar-productos" element={<AgregarProducts />} />
-          <Route path='productos' element={<Productlist/>}/>
+          <Route path='product' element={<Productlist/>}/>
         </Route>
 
         {/* Página 404 */}
