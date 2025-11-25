@@ -62,9 +62,9 @@ const Productlist = () => {
     }
 
     try {
-      console.log('Fetching from:', `${API_BASE_URL}/api/products`);
+      console.log('Fetching from:', `${import.meta.env.VITE_API_URL}/api/products`);
       
-      const response = await fetch(`${API_BASE_URL}/api/products`, { 
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, { 
         headers,
         method: 'GET'
       });
@@ -118,7 +118,7 @@ const Productlist = () => {
     if (!productToDelete) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/products/${productToDelete.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${productToDelete.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -157,10 +157,10 @@ const Productlist = () => {
     }
     // Campos alternativos
     if (producto.image) {
-      return producto.image.startsWith('http') ? producto.image : `${API_BASE_URL}${producto.image}`;
+      return producto.image.startsWith('http') ? producto.image : `${import.meta.env.VITE_API_URL}${producto.image}`;
     }
     if (producto.imagen) {
-      return producto.imagen.startsWith('http') ? producto.imagen : `${API_BASE_URL}${producto.imagen}`;
+      return producto.imagen.startsWith('http') ? producto.imagen : `${import.meta.env.VITE_API_URL}${producto.imagen}`;
     }
     return null;
   };
