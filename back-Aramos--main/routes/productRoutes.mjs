@@ -13,7 +13,20 @@ const upload = multer();
 router.get("/", async (req, res) => {
   try {
     const productos = await Product.findAll();
-    res.json(productos);
+    
+    // Transformar para que coincida con el frontend
+    const productosTransformados = productos.map(p => ({
+      id: p.id,
+      name: p.nombre,
+      descripcion: p.descripcion,
+      price: p.precio,
+      stock: 0, // Valor por defecto
+      image_url: p.imagen,
+      createdAt: p.createdAt,
+      updatedAt: p.updatedAt
+    }));
+    
+    res.json(productosTransformados);
   } catch (error) {
     console.error('Error al obtener productos:', error);
     res.status(500).json({ 

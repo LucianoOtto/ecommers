@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css"
 import  AgregarProducts  from './Components/AgregarProducts'
 import Register from './Components/Register'
 import Login from './Components/Login'
+import Productlist from './Components/Productlist'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* Rutas privadas */}
         <Route path="/private" element={<Private />}>
           <Route path="agregar-productos" element={<AgregarProducts />} />
+          <Route path='productos' element={<Productlist/>}/>
         </Route>
 
         {/* Página 404 */}

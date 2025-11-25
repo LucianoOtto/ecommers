@@ -169,7 +169,7 @@ const Register = () => {
             />
             <button
               type="button"
-              onClick={() => navigate('/private/usuarios')}
+              onClick={() => navigate('/')}
               className="flex-1 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Cancelar

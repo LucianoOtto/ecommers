@@ -7,24 +7,19 @@ const Product = sequelize.define("Product", {
     primaryKey: true, 
     autoIncrement: true 
   },
-  name: {
+  nombre: {
     type: DataTypes.STRING,
     allowNull: false
   },
   descripcion: {
     type: DataTypes.TEXT
   },
-  price: {
+  precio: {
     type: DataTypes.FLOAT,
     allowNull: false,
     defaultValue: 0
   },
-  stock: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0
-  },
-  image_url: {
+  imagen: {
     type: DataTypes.STRING
   }
 }, {

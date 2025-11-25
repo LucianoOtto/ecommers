@@ -86,6 +86,7 @@ const Login = () => {
                 type='submit'
                 value={loading ? "Iniciando..." : "Iniciar Sesión"}
                 disabled={loading}
+                onClick={()=>navigate('/Private/product')}
             />
         </Form>
     )
