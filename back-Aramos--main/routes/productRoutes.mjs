@@ -11,14 +11,17 @@ const upload = multer();
 
 // Obtener todos los productos
 router.get("/", async (req, res) => {
-  const productos = await Product.findAll({
-    include: {
-      association: "User",
-      attributes: ["id", "nombre", "email", "rol"]
-    }
-  });
-
-  res.json(productos);
+  try {
+    const productos = await Product.findAll();
+    res.json(productos);
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    res.status(500).json({ 
+      error: true, 
+      message: 'Error al obtener productos',
+      details: error.message 
+    });
+  }
 });
 
 // Crear un producto (admin o empleado)
