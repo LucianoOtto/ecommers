@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Public from './Pages/Public'
 import Private from './Pages/Private'
 import "react-toastify/dist/ReactToastify.css"
-import { AgregarProducts } from './Components/AgregarProducts'
+import  AgregarProducts  from './Components/AgregarProducts'
 import Register from './Components/Register'
 import Login from './Components/Login'
 

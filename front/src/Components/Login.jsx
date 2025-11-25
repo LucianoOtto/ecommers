@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { Input } from "./Input"
+import  Input  from "./Input"
 import { Link, useNavigate } from 'react-router-dom'
 import Form from "./Form"
 import Button from "./Button"

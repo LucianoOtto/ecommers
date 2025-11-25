@@ -1,13 +1,17 @@
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useStore } from '../store/useStore'
-import  Productlist  from '../Components/Productlist'
+import Productlist from '../Components/Productlist'
 import Nav from '../Components/Nav'
 
 const Public = () => {
   const { user, setUser } = useStore()
   const navigate = useNavigate()
+  const location = useLocation() // 👈 Nuevo hook para detectar la ruta actual
   const [isVerifying, setIsVerifying] = useState(true)
+
+  // Detectar si estamos en las rutas de login o register
+  const isAuthRoute = location.pathname.includes('/login') || location.pathname.includes('/register')
 
   useEffect(() => {
     async function verifyUser() {
@@ -54,6 +58,24 @@ const Public = () => {
     verifyUser()
   }, [user?.token, navigate, setUser])
 
+  // 👇 Si estamos en rutas de autenticación, mostrar SOLO el formulario
+  if (isAuthRoute) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+        {/* Efectos de fondo */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        
+        {/* Solo el contenido del formulario */}
+        <div className="relative z-10 w-full">
+          <Outlet />
+        </div>
+      </div>
+    )
+  }
+
+  // 👇 Vista normal con Nav, título y productos
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
       {/* Efectos de fondo mejorados */}

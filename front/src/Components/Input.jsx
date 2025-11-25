@@ -1,4 +1,4 @@
-export const Input = ({ type, name, placeholder, id, title, value, onChange }) => {
+const Input = ({ type, name, placeholder, id, title, value, onChange }) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id}
@@ -15,3 +15,4 @@ export const Input = ({ type, name, placeholder, id, title, value, onChange }) =
       />
     </div>)
 }
+export default Input
